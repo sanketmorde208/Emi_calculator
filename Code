@@ -1,0 +1,204 @@
+import java.awt.*;
+
+import java.awt.event.*;
+
+import javax.swing.*;
+
+import javax.swing.border.Border;
+
+public class EmiCalculator extends JFrame implements ActionListener {
+
+JLabel l, l1,l2,l3,l4,l5,l6,l7,l8,l9;
+
+JTextField t1,t2,t3;
+
+JButton b1;
+
+JPanel p;
+
+EmiCalculator(){
+
+p = new JPanel();
+
+Border o = BorderFactory.createLineBorder(Color.BLACK,3,true);
+
+p.setBorder(o);
+
+add(p);
+
+setSize(800,800);
+
+setVisible(true);
+
+p.setLayout(null);
+l = new JLabel(" Loan EMI Calculator");
+
+l.setForeground(Color.red);
+
+l.setFont(new Font("Times new roman BOLD", Font.PLAIN, 25));
+
+Border d = BorderFactory.createLineBorder(Color.GRAY,2,true);
+
+l.setBorder(d);
+
+l.setBounds(230, 20, 250, 40);
+
+p.add(l);
+
+l1 = new JLabel("Loan Ammount (₹)");
+
+l1.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+
+l1.setBounds(60, 100, 180, 30);
+t2 = new JTextField();
+
+t2.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+
+t2.setBounds(350, 150, 300, 40);
+
+p.add(t2);
+
+t3 = new JTextField();
+
+t3.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+
+t3.setBounds(350, 200, 300, 40);
+
+p.add(t3);
+
+l4 = new JLabel();
+
+l4.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+
+l4.setBounds(400, 350, 200, 50);
+
+p.add(l4);
+
+l5 = new JLabel();
+
+l5.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+
+l5.setBounds(400, 410, 200, 50);
+
+p.add(l5);
+
+l6 = new JLabel();
+
+l6.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+
+l6.setBounds(400, 470, 200, 50);
+
+p.add(l6);
+
+l7 = new JLabel(" Loan EMI = ");
+
+l7.setBounds(50, 350, 600, 50);
+
+l7.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+p.add(l1);
+
+l2 = new JLabel("Interest rate (%)");
+
+l2.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+
+l2.setBounds(60, 150, 150, 30);
+
+p.add(l2);
+
+l3 = new JLabel("Loan Teuner(Yr)");
+
+l3.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+
+l3.setBounds(60, 200, 150, 30);
+
+p.add(l3);
+
+t1 = new JTextField(20);
+
+t1.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+
+t1.setBounds(350, 100, 300, 40);
+
+p.add(t1);
+Border a = BorderFactory.createLineBorder(Color.BLACK,2,true);
+
+l7.setBorder(a);
+
+p.add(l7);
+
+l8 = new JLabel(" Total Interest Payble =");
+
+l8.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+
+Border b = BorderFactory.createLineBorder(Color.BLACK,2,true);
+
+l8.setBorder(b);
+
+l8.setBounds(50,410, 600, 50);
+
+p.add(l8);
+
+l9 = new JLabel(" Total Payment(Principal + Interest) =");
+
+l9.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+
+Border c = BorderFactory.createLineBorder(Color.BLACK,2,true);
+
+l9.setBorder(c);
+
+l9.setBounds(50, 470, 600, 50);
+
+p.add(l9);
+
+b1 = new JButton("Submit");
+
+b1.setFont(new Font("Times new roman BOLD", Font.PLAIN, 20));
+
+Border u = BorderFactory.createLineBorder(Color.RED,2,true);
+
+b1.setBorder(u);
+
+b1.setBounds(250,270,200,50);
+
+p.add(b1);
+
+b1.addActionListener(this);
+
+}
+public void actionPerformed(ActionEvent e) {
+
+if (e.getSource()== b1) {
+
+double principal =Double.parseDouble(t1.getText());
+
+double rate = Double.parseDouble(t2.getText());
+
+double time = Double.parseDouble(t3.getText());
+
+rate=rate/(12*100);
+
+time=time*12;
+
+double emi= (principal*rate*Math.pow((1+rate),time))/(Math.pow((1+rate),time)-1);
+
+double totalInterest=(emi*time)-principal;
+
+double totalPayment=principal+totalInterest;
+
+l4.setText(" "+"₹ "+emi);
+
+l5.setText(" "+"₹ "+totalInterest);
+
+l6.setText(" "+"₹ "+totalPayment);
+
+}
+
+}
+
+public static void main(String [] args) {
+
+new EmiCalculator();
+
+}
+
+}
